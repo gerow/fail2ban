@@ -41,9 +41,10 @@ override_dh_install:
 	install -d $(DESTDIR)/etc/bash_completion.d
 	install -m 644 files/bash-completion $(DESTDIR)/etc/bash_completion.d/fail2ban
 	: # Install systemd files
-	install -d $(DESTDIR)/lib/systemd/system
+	install -d $(DESTDIR)/lib/systemd/system/fail2ban.service.d
 	install -d $(DESTDIR)/usr/lib/tmpfiles.d
 	install -m 644 build/fail2ban.service $(DESTDIR)/lib/systemd/system
+	install -m 644 debian/fail2ban.service.d/* $(DESTDIR)/lib/systemd/system/fail2ban.service.d
 	install -m 644 files/fail2ban-tmpfiles.conf $(DESTDIR)/usr/lib/tmpfiles.d
 	install -d $(DESTDIR)/lib/systemd/system
 	: # Install default jail enabler
